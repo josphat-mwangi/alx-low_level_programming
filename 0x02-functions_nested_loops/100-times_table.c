@@ -1,51 +1,60 @@
-#include "main.h"
-
+#include "holberton.h"
 /**
- * print_times_table - function that prints the n times table, starting with 0.
- * @n: input of table n
- * Return: nothing.
+ *print_times_table - prints timestable from n
+ *
+ *@n:input
+ *
+ *Return: void
+ *
  */
-
 void print_times_table(int n)
 {
-	int row, col;
-	int mult = 0;
+	int result;
 
-	if (n <= 15 && n >= 0)
+	if (n <= 15 && n > 0)
 	{
-		for (row = 0; row <= n; row++)
+		int i;
+
+		for (i = 0; i <= n; i++)
 		{
-			for (col = 0; col <= n; col++)
+			int j;
+
+			for (j = 0; j <= n; j++)
 			{
-				mult = (row * col);
-				if (mult < 10)
+				result = i * j;
+				if (j == 0)
 				{
-					if (col != 0)
-					{
-						_putchar(' ');
-						_putchar(' ');
-						_putchar(' ');
-					}
-					_putchar(mult + '0');
+					_putchar('0' + result);
 				}
-				else if (mult < 100)
+				else if (result >= 10)
 				{
 					_putchar(' ');
+					_putchar('0' + (result / 10));
+					_putchar('0' + (result % 10));
+				}
+				else if (result >= 100)
+				{
 					_putchar(' ');
-					_putchar((mult / 10) + '0');
-					_putchar((mult % 10) + '0');
+					_putchar('0' + (result / 100));
+					_putchar('0' + ((result / 10) % 10));
+					_putchar('0' + (result % 10));
 				}
 				else
 				{
 					_putchar(' ');
-					_putchar((mult / 100) + '0');
-					_putchar(((mult % 100) / 10) + '0');
-					_putchar((mult % 10) + '0');
+					_putchar(' ');
+					_putchar(result + '0');
 				}
-				if (col != n)
+				if (j != n)
+				{
 					_putchar(',');
+				}
 			}
 			_putchar('\n');
 		}
+	}
+	else
+	{
+		_putchar('\n');
 	}
 }
